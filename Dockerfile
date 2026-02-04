@@ -12,7 +12,9 @@ RUN apt-get update --yes --quiet && DEBIAN_FRONTEND=noninteractive apt-get insta
     software-properties-common \
     gpg-agent \
     build-essential apt-utils \
-    && apt-get install --reinstall ca-certificates nano caddy \
+    nano \
+    caddy \
+    && apt-get install --reinstall ca-certificates \
     && add-apt-repository --yes ppa:deadsnakes/ppa && apt update --yes --quiet \
     && DEBIAN_FRONTEND=noninteractive apt-get install --yes --quiet --no-install-recommends \
     python3.11 \
