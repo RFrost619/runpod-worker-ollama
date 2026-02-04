@@ -27,6 +27,14 @@ RUN apt-get update --yes --quiet && DEBIAN_FRONTEND=noninteractive apt-get insta
     curl && \
     ln -s /usr/bin/python3.11 /usr/bin/python && \
     curl -sS https://bootstrap.pypa.io/get-pip.py | python3.11 && \
+    tee /etc/caddy/Caddyfile > /dev/null <<'EOF'
+    https {
+        tls internal {
+            on_demand
+        }
+        reverse_proxy host.docker.internal:11434
+    }
+    EOF
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
